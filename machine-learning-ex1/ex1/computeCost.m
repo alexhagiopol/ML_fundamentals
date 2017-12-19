@@ -7,8 +7,8 @@ function J = computeCost(X, y, theta)
 %               You should set J to the cost.
 
 m = length(y); % number of training examples
-h_theta = horzcat(X,y);  % create mx3 matrix to multiply with theta 3x1 matrix
-theta = [theta; -1];  % Append -1 to yield -y after mat mult: [theta_0; theta_1; -1]
-J = sum((h_theta * theta).^2) / (2 * m);  % h_theta * theta = h_theta(x_i) - y_i for each i
+X_concat_y = horzcat(X,y);  % create mx3 matrix to multiply with theta 3x1 matrix
+theta_vec = [theta; -1];  % Append -1 to yield -y after mat mult: [theta_0; theta_1; -1]
+J = sum((X_concat_y * theta_vec).^2) / (2 * m);  % h_theta * theta = h_theta(x_i) - y_i for each i
 % =========================================================================
 end

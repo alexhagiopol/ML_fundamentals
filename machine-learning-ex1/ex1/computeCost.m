@@ -6,6 +6,11 @@ function J = computeCost(X, y, theta)
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
+% N.B.
+% 1. X is an mx2 matrix whose first column contains the actual input data points and
+% whose second column contains all 1s to be multiplied with the intercept term.
+% 2. Y is an mx1 matrix containing output data points
+
 m = length(y); % number of training examples
 X_concat_y = horzcat(X,y);  % create mx3 matrix to multiply with theta 3x1 matrix
 theta_vec = [theta; -1];  % Append -1 to yield -y after mat mult: [theta_0; theta_1; -1]

@@ -7,9 +7,10 @@ function J = computeCost(X, y, theta)
 %               You should set J to the cost.
 
 % N.B.
-% 1. X is an mx2 matrix whose first column contains the actual input data points and
-% whose second column contains all 1s to be multiplied with the intercept term.
+% 1. X is an mx2 matrix whose first column contains the actual input data values and
+% whose second column contains all 1s to be multiplied with the theta_0 intercept term.
 % 2. Y is an mx1 matrix containing output data points
+% 3. theta is a 2x1 matrix containing the current parameter estimate [theta_0; theta_1]
 
 m = length(y); % number of training examples
 X_concat_y = horzcat(X,y);  % create mx3 matrix to multiply with theta 3x1 matrix

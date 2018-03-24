@@ -2,7 +2,7 @@
 
 ### Intro:
 
-This repo contains my Octave implementations of the projects in [Andrew Ng's Coursera course on Machine Learning](https://www.coursera.org/learn/machine-learning). I strive to write the most efficient solutions possible for each project. If you know a better solution please submit a PR.
+This repo contains my Matlab / Octave implementations of the projects in [Andrew Ng's Coursera course on Machine Learning](https://www.coursera.org/learn/machine-learning). I strive to write the most efficient solutions possible for each project. If you know a better solution please submit a PR.
 
 ### Contents:
 

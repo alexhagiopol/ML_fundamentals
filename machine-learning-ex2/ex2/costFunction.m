@@ -14,10 +14,8 @@ function [J, grad] = costFunction(theta, X, y)
 	% Note: y is an mx1 vector
 	%
 	[m, n] = size(X);  % m is the number of examples, n is the number of parameters.
-	J = sum(-1 .* y .* log(sigmoid(theta' .* ))) / m
-
-
-
-	grad = zeros(size(theta));
+	h_theta_x = sigmoid(X * theta);
+	J = sum(-1 .* y .* log(h_theta_x) - (1 - y) .* log(1 - h_theta_x)) / m;
+	grad = ((h_theta_x - y)' * X) / m;
 	% =============================================================
 end

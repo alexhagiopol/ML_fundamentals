@@ -31,5 +31,6 @@ function [J, grad] = lrCostFunction(theta, X, y, lambda)
 	[m, n] = size(X);  % m is the number of examples, n is the number of parameters.
 	h_theta_x = sigmoid(X * theta);
 	J = sum(-1 .* y .* log(h_theta_x) - (1 - y) .* log(1 - h_theta_x)) / m + lambda * sum(theta(2:end) .^ 2) / (2*m);  % do not allow theta(1) to affect cost calculation
-	grad = (((h_theta_x - y)' * X) + (lambda * [0; theta(2:end)])') / m;  % do not allow theta(1) to affect gradient calculation; regularization term transposed to be row vector & avoid column vector + row vector addition
+	grad = ((((h_theta_x - y)' * X) + (lambda * [0; theta(2:end)])') / m)';  % do not allow theta(1) to affect gradient calculation; regularization term transposed to be row vector & avoid column vector + row vector addition
+	% transpose gradient for compatibility with fmincg
 end

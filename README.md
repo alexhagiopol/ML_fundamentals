@@ -8,8 +8,9 @@ This repo contains my Matlab / Octave implementations of the projects in [Andrew
 
 To maintain as much consistency with the course as possible, I retain all of the original filenames from the course material. This practice makes the repo a bit hard to navigate, so here are the topics covered and where to find them: 
 
-	Linear Regression   - machine-learning-ex1
-	Logistic Regression - machine-learning-ex2
+	Linear Regression      - machine-learning-ex1
+	Logistic Regression    - machine-learning-ex2
+	NN Forward Propagation - machine-learning-ex3
 
 ### Notices:
 

@@ -62,6 +62,9 @@ function [J grad] = nnCostFunction(nn_params, input_layer_size, hidden_layer_siz
 	% compute unregularized cost
 	J = (1/m)*sum(sum(-y_one_hot.*log(h_theta_x) - (1-y_one_hot).*log(1-h_theta_x)));
 
+	% compute regularized cost
+	J += (lambda / (2*m))*(sum(sum(Theta1(:, 2:end).^2)) + sum(sum(Theta2(:, 2:end).^2)));
+
 	Theta1_grad = zeros(size(Theta1));
 	Theta2_grad = zeros(size(Theta2));
 	% Unroll gradients

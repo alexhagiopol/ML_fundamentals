@@ -42,6 +42,8 @@ function [J grad] = nnCostFunction(nn_params, input_layer_size, hidden_layer_siz
 	%
 	% Reshape nn_params back into the parameters Theta1 and Theta2, the weight matrices
 	% for our 2 layer neural network
+	
+	% *** FORWARD PROPAGATION ***
 	Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
 	                 hidden_layer_size, (input_layer_size + 1));
 	Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):end), ...
@@ -56,17 +58,22 @@ function [J grad] = nnCostFunction(nn_params, input_layer_size, hidden_layer_siz
 	end
 	% compute prediction h_theta_x
 	a1 = [ones(m,1), X]; % add column of ones representing bias unit to X matrix representing
-	a2 = sigmoid(a1*Theta1');
+	z2 = a1*Theta1';
+	a2 = sigmoid(z2);
 	a2 = [ones(m,1), a2];  % add bias unit
-	h_theta_x = sigmoid(a2 * Theta2');
+	a3 = h_theta_x = sigmoid(a2 * Theta2');
 	% compute unregularized cost
 	J = (1/m)*sum(sum(-y_one_hot.*log(h_theta_x) - (1-y_one_hot).*log(1-h_theta_x)));
-
 	% compute regularized cost
 	J += (lambda / (2*m))*(sum(sum(Theta1(:, 2:end).^2)) + sum(sum(Theta2(:, 2:end).^2)));
 
-	Theta1_grad = zeros(size(Theta1));
-	Theta2_grad = zeros(size(Theta2));
+	% *** BACK PROPAGATION ***
+	delta3 = a3 - y_one_hot;  % part 2 of instructions
+	delta2 = (( delta3 * Theta2 ) .* sigmoidGradient([ones(m, 1), z2]))(:, 2:end);  % part 3 of instructions
+	Theta1_grad = (delta2' * a1) ./ m;  % parts 4 and 5 of instructions. same as DELTA1
+	Theta2_grad = (delta3' * a2) ./ m;  % parts 4 and 5 of instructions. same as DELTA2
+	Theta1_grad += (lambda/m)*[zeros(size(Theta1,1), 1) Theta1(:, 2:end)]  % implement regularization step in section 2.5
+	Theta2_grad += (lambda/m)*[zeros(size(Theta2,1), 1) Theta2(:, 2:end)]  % implement regularization step in section 2.5
 	% Unroll gradients
 	grad = [Theta1_grad(:) ; Theta2_grad(:)];
 end

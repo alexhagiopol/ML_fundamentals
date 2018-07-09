@@ -12,6 +12,7 @@ To maintain as much consistency with the course as possible, I retain all of the
 	Logistic Regression    - machine-learning-ex2
 	NN Forward Propagation - machine-learning-ex3
 	NN Back Propagation    - machine-learning-ex4
+	Bias vs. Variance      - machine-learning-ex5
 
 ### Notices:
 
